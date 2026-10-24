@@ -1,0 +1,32 @@
+$ # Build a scene collection by hand: clone the generated Untitled.json,
+$ # add the Community Meeting sources/scenes (chapter 5 fixture), validate
+$ python3 build-collection.py   # (script run in the lab; output below)
+wrote: basic/scenes/Community Meeting.json
+valid JSON, name: Community Meeting
+sources: [('Meeting Background', 'color_source'), ('Welcome Text', 'text_ft2_source'), ('Break Text', 'text_ft2_source'), ('House Slides', 'image_source'), ('Speaker Camera', 'v4l2_input'), ('Title', 'scene'), ('Speaker and Slides', 'scene'), ('Slides Only', 'scene'), ('Break', 'scene')]
+scene_order: ['Title', 'Speaker and Slides', 'Slides Only', 'Break']
+
+$ # Point global.ini at it ([Basic] in global.ini, edited with sed)
+SceneCollection=Community Meeting
+SceneCollectionFile=Community Meeting
+
+$ # Relaunch under Xvfb (--verbose). The new log says:
+04:34:17.637: private source 'Cut' (cut_transition) created
+04:34:17.641: private source 'Fade' (fade_transition) created
+04:34:17.642: source 'Meeting Background' (color_source) created
+04:34:17.643: source 'Welcome Text' (text_ft2_source) created
+04:34:17.644: source 'Break Text' (text_ft2_source) created
+04:34:17.645: source 'House Slides' (image_source) created
+04:34:17.645: v4l2-input: Start capture from default
+04:34:17.645: v4l2-input: Unable to open device
+04:34:17.645: v4l2-input: Initialization failed, errno: No such file or directory
+04:34:17.645: source 'Speaker Camera' (v4l2_input) created
+04:34:17.646: source 'Title' (scene) created
+04:34:17.647: source 'Speaker and Slides' (scene) created
+04:34:17.648: source 'Slides Only' (scene) created
+04:34:17.648: source 'Break' (scene) created
+04:34:17.650: Switched to scene 'Title'
+
+$ # Notes: the v4l2 camera source was created but could not open a
+$ # device — the lab machine has no camera. The collection file was
+$ # NOT rewritten by OBS during the run (loaded into memory as-is).

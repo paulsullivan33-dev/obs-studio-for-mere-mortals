@@ -1,0 +1,28 @@
+site_name: OBS Studio for Mere Mortals
+site_description: Plain-language recording and live streaming with the free studio that runs on your own computer. Scenes and sources, the mixer, recording to disk, going live, the virtual camera, profiles and scene collections as ordinary files, and backups of the whole desk.
+site_url: https://paulsullivan33-dev.github.io/obs-studio-for-mere-mortals/
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What OBS Studio Is: what-obs-studio-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing OBS Studio: installing-obs-studio.md
+  - First Run and the Auto-Configuration Wizard: first-run-and-the-wizard.md
+  - Scenes and Sources: scenes-and-sources.md
+  - Audio and the Mixer: audio-and-the-mixer.md
+  - Recording: recording.md
+  - Streaming: streaming.md
+  - Filters, Transitions and the Virtual Camera: filters-transitions-and-virtual-camera.md
+  - Profiles and Scene Collections: profiles-and-scene-collections.md
+  - Backup and Moving Your Setup: backup-and-moving-your-setup.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

@@ -1,0 +1,77 @@
+The lab — a GUI program on a machine with no screen
+====================================================================
+
+The lab is the real program, installed the
+ordinary way on the build machine (Ubuntu
+24.04):
+
+  * OBS Studio 30.0.2, Ubuntu's own package
+    (30.0.2+dfsg-3build1; the binary reports
+    itself as "OBS Studio - 30.0.2.1-3build1"),
+    installed with apt together with 152
+    dependency packages.
+  * The machine is a virtual one: no camera,
+    no microphone, no graphics processor,
+    no sound server. Xvfb provided a virtual
+    display so the program could open its
+    window at all.
+
+That ceiling shapes everything the guide
+claims, and it is declared wherever it
+matters: the install, the command line, the
+configuration files and the scene-file
+format are verified against the running
+program. Recording, streaming, the wizard
+and every other interactive workflow are
+documented only — the bench had nothing to
+record and nowhere to stream to.
+
+Bench notes worth keeping:
+
+  * OBS has no headless mode. With no
+    display at all, Qt aborts ("Could not
+    load the Qt platform plugin xcb"). With
+    Qt's offscreen platform it initialises,
+    writes global.ini, a log and profiler
+    data into ~/.config/obs-studio, then
+    stops at "Unable to open X display".
+    Only under Xvfb did it reach
+    "Startup complete".
+  * A first run under the virtual display
+    created the whole configuration tree:
+    global.ini, basic/profiles/Untitled/
+    basic.ini, basic/scenes/Untitled.json,
+    logs/, plugin_config/ and profiler_data/.
+  * The fresh profile's basic.ini held only
+    its name ([General] Name=Untitled) — the
+    program writes settings as they are made.
+  * global.ini's [OBSWebSocket] section on a
+    fresh install: ServerEnabled=false,
+    ServerPort=4455, AuthRequired=true, and
+    a ServerPassword the program generated
+    itself on first load (redacted in the
+    transcript).
+  * The guide's Community Meeting scene
+    collection was written by hand as JSON,
+    modelled on the generated Untitled.json,
+    and pointed to in global.ini. OBS loaded
+    it: every one of its nine sources was
+    created and the program switched to its
+    first scene, Title. The one expected
+    failure: the v4l2 camera source, with no
+    camera to open ("Unable to open device").
+    A load-only run does not rewrite the
+    collection file.
+  * Without the v4l2loopback kernel module,
+    the log says "v4l2loopback not
+    installed, virtual camera disabled" —
+    chapter 9's Linux note, observed.
+  * --portable on this packaged Linux build
+    is accepted but does nothing: the log
+    answers "Portable mode: false" and the
+    configuration lands in ~/.config as
+    usual. Portable mode is a Windows
+    .zip-build feature (chapter 11).
+
+Transcripts of the verification runs are
+in obs-studio-lab/transcripts/, t00-t05.

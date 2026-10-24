@@ -1,0 +1,74 @@
+OBS Studio — the distilled commands
+====================================================================
+Placeholders: <name> is a profile or scene-collection name you
+chose; paths are per operating system as noted.
+
+INSTALL (chapter 3)
+--------------------------------------------------------------------
+Linux (Ubuntu/Debian, distribution package):
+  sudo apt install obs-studio
+  sudo apt install v4l2loopback-dkms   # only for the virtual
+                                       # camera on Linux (ch. 9)
+
+Windows: installer or .zip from https://obsproject.com
+macOS:   .dmg from https://obsproject.com — pick Apple silicon
+         or Intel to match the machine.
+
+FIRST CHECK (chapter 3)
+--------------------------------------------------------------------
+  obs --version            # prints the version line
+  obs --help               # every command-line flag, from the
+                           # program itself
+
+CONFIGURATION FOLDER (chapters 2, 10, 11)
+--------------------------------------------------------------------
+Windows:  %APPDATA%\obs-studio
+macOS:    ~/Library/Application Support/obs-studio
+Linux:    ~/.config/obs-studio
+Flatpak:  ~/.var/app/com.obsproject.Studio/config/obs-studio
+
+  # in the program: File -> Show Settings Folder opens it.
+
+BACKUP — the whole desk (chapter 11)
+--------------------------------------------------------------------
+Linux:
+  cp -r ~/.config/obs-studio ~/obs-backup-2026-10-23
+  ls ~/obs-backup-2026-10-23/basic/scenes   # expect your
+                                            # collections as .json
+
+PIECES (chapter 10)
+--------------------------------------------------------------------
+Profiles:           <config>/basic/profiles/<name>/
+Scene collections:  <config>/basic/scenes/<name>.json
+In the program: Scene Collection -> Export / Import,
+                Profile -> Export / Import.
+
+PORTABLE MODE (chapter 11)
+--------------------------------------------------------------------
+Windows .zip builds: put a file named obs_portable_mode.txt
+beside obs64.exe (or start with --portable) and the
+configuration lives in an obs-studio folder beside the
+program — program and desk in one copyable folder.
+
+Linux, packaged install (lab-verified, transcript t05):
+  obs --portable     # flag accepted, but the log answers
+                     # "Portable mode: false" and the config
+                     # still goes to ~/.config/obs-studio.
+                     # Portable mode is a Windows-build feature.
+
+USEFUL FLAGS (from obs --help; the lab's copy is transcript t01)
+--------------------------------------------------------------------
+  --profile <name>         start with this profile
+  --collection <name>      start with this scene collection
+  --scene <name>           start on this scene
+  --startrecording         begin recording on launch
+  --startstreaming         begin streaming on launch
+  --startvirtualcam        begin the virtual camera on launch
+  --minimize-to-tray       start hidden in the tray
+
+REMOTE CONTROL (chapter 10)
+--------------------------------------------------------------------
+obs-websocket is built in (OBS 28+), off by default:
+  Tools -> WebSocket Server Settings -> enable, set a password.
+  Default port 4455. Anything that can reach it with the
+  password can press the buttons — treat it like one.

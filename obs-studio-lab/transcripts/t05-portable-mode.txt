@@ -1,0 +1,19 @@
+$ # Portable mode probe: fresh HOME, fresh working directory
+$ cd <scratch-cwd> && HOME=<scratch> xvfb-run obs --portable
+info: Command Line Arguments: --portable
+info: Portable mode: false
+
+$ find <scratch-cwd>     # nothing was created beside the "program"
+(empty)
+$ find <scratch-home>/.config/obs-studio -maxdepth 1
+~/.config/obs-studio
+~/.config/obs-studio/basic
+~/.config/obs-studio/logs
+~/.config/obs-studio/profiler_data
+~/.config/obs-studio/plugin_config
+~/.config/obs-studio/global.ini
+
+# Verdict: on this packaged Linux build the --portable flag is
+# accepted but portable mode stays OFF (the log says so), and the
+# configuration goes to ~/.config/obs-studio as usual. The portable
+# desk of chapter 11 is a Windows .zip-build feature.

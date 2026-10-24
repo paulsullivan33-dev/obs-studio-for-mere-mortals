@@ -1,0 +1,15 @@
+$ sudo apt install obs-studio   # Ubuntu 24.04, distribution package
+# (private apt state under ~/workspace was used in this sandbox;
+#  the command and the result are the ordinary ones)
+0 upgraded, 153 newly installed, 0 to remove and 2 not upgraded.
+Setting up libobs0t64:amd64 (30.0.2+dfsg-3build1) ...
+Setting up obs-plugins:amd64 (30.0.2+dfsg-3build1) ...
+Setting up obs-studio (30.0.2+dfsg-3build1) ...
+
+$ dpkg -s obs-studio | grep -E "^(Package|Version|Status)"
+Package: obs-studio
+Status: install ok installed
+Version: 30.0.2+dfsg-3build1
+
+$ which obs
+/usr/bin/obs

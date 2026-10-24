@@ -1,0 +1,62 @@
+$ # Attempt 1: no display at all
+$ env -u DISPLAY obs
+qt.qpa.xcb: could not connect to display 
+qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: linuxfb, minimal, offscreen, vkkhrdisplay, xcb, eglfs, minimalegl, wayland-egl, wayland, vnc.
+
+(exit: 134)
+
+$ # Attempt 2: Qt offscreen platform, scratch HOME
+$ HOME=<scratch> QT_QPA_PLATFORM=offscreen timeout 20 obs
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+error: Could not create dbus connection: Cannot autolaunch D-Bus without X11 $DISPLAY
+error: Could not create dbus connection: Cannot autolaunch D-Bus without X11 $DISPLAY
+debug: Attempted path: share/obs/obs-studio/locale/en-US.ini
+debug: Attempted path: /usr/share/obs/obs-studio/locale/en-US.ini
+debug: Attempted path: share/obs/obs-studio/themes/Yami.qss
+debug: Attempted path: /usr/share/obs/obs-studio/themes/Yami.qss
+info: CPU Name: AMD EPYC 9D25 126-Core Processor
+info: CPU Speed: 1497.748MHz
+info: Physical Cores: 2, Logical Cores: 2
+info: Physical Memory: 7935MB Total, 176MB Free
+info: Kernel Version: Linux 7.0.0-39-generic
+info: Distribution: "Ubuntu" "24.04"
+info: Unable to open X display
+info: Freeing OBS context data
+info: == Profiler Results =============================
+info: run_program_init: 129.859 ms
+info:  ┣OBSApp::AppInit: 15.616 ms
+info:  ┃ ┗OBSApp::InitLocale: 4.068 ms
+info:  ┗OBSApp::OBSInit: 3.891 ms
+info:    ┗obs_startup: 3.677 ms
+info: =================================================
+info: == Profiler Time Between Calls ==================
+info: =================================================
+info: Number of memory leaks: 0
+(exit: 0)
+
+$ find <scratch-home> -type f | head
+/home/hatch/workspace/obs-lab-scratch/home-offscreen/.config/obs-studio/logs/2026-10-24 04-31-22.txt
+/home/hatch/workspace/obs-lab-scratch/home-offscreen/.config/obs-studio/profiler_data/2026-10-24 04-31-22.csv.gz
+/home/hatch/workspace/obs-lab-scratch/home-offscreen/.config/obs-studio/global.ini
+$ # Attempt 3: Xvfb virtual display, scratch HOME, 50-second run
+$ HOME=<scratch> xvfb-run -a -s "-screen 0 1920x1080x24" obs   # ended by timeout
+info: Window System: X11.0, Vendor: The X.Org Foundation, Version: 1.21.1
+info: OBS 30.0.2.1-3build1 (linux)
+	base resolution:   1920x1080
+	output resolution: 1280x720
+	fps:               30/1
+warning: v4l2loopback not installed, virtual camera disabled
+info: [obs-websocket] [obs_module_load] you can haz websockets (Version: 5.3.4 | RPC Version: 1)
+info: [obs-websocket] [obs_module_load] Qt version (compile-time): 6.4.2 | Qt version (run-time): 6.4.2
+info: [obs-websocket] [obs_module_load] Linked ASIO Version: 102801
+info: [obs-websocket] [Config::Load] (FirstLoad) Generating new server password.
+info: [obs-websocket] [obs_module_load] Module loaded.
+info:   Loaded Modules:
+info:     obs-websocket.so
+info: ==== Startup complete ===============================================
+info: No scene file found, creating default scene
+info: Switched to scene 'Scene'
+... (full console log kept with the lab scratch notes)
