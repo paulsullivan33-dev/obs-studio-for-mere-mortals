@@ -1,6 +1,7 @@
 site_name: OBS Studio for Mere Mortals
 site_description: Plain-language recording and live streaming with the free studio that runs on your own computer. Scenes and sources, the mixer, recording to disk, going live, the virtual camera, profiles and scene collections as ordinary files, and backups of the whole desk.
 site_url: https://paulsullivan33-dev.github.io/obs-studio-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
 
 # Guides live at the repo root (nice for GitHub browsing).
 # The deploy workflow copies them into docs/ before building.
